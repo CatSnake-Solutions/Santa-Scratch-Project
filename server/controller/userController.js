@@ -1,10 +1,11 @@
-const User = require('./userModel')
+const User = require('../models/userModel')
 
 const UserController = {}
   // Create a new student in the Database
   // Their information will be sent in the request body
   // This should send the created student
   UserController.createUser = (req, res, next) => {
+    console.log('Create User middleware reached');
     const { name, email, username, password } = req.body;
     User.create({ name, email, username, password })
       .then(newUser => {
@@ -19,9 +20,8 @@ const UserController = {}
       });
     }
 
-
-
 UserController.verifyUser = (req, res, next) => {
+  console.log('verifyUser middleware reached');
   // write code here
   const { username, password } = req.body;
   User.findOne({ username: username })
@@ -31,7 +31,6 @@ UserController.verifyUser = (req, res, next) => {
       return next();
     }
     else { 
-      res.redirect('/SignUp');
       return next('userController.verifyUser: Passwords did not match') 
     }
   })
