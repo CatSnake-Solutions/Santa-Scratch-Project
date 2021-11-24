@@ -13,10 +13,11 @@ const UserController = {}
         return next();
       })
       .catch(err => {
-        return res
-          .set('Content-Type', 'text/plain')
-          .status(400)
-          .send(`UserController.createUser Error: ${err}`);
+        return next({
+          log: `userController.createUser: Failed to create new user. ${err}`,
+          status: 400,
+          message: { err: `userController.createUser: Failed to create new user. ${err}`},
+        })
       });
     }
 
@@ -31,11 +32,20 @@ UserController.verifyUser = (req, res, next) => {
       return next();
     }
     else { 
-      return next('userController.verifyUser: Passwords did not match') 
+      // Username or password does not match
+      return next({
+        log: `userController.verifyUser: Password does not match.`,
+        status: 400,
+        message: { err: `userController.verifyUser: Password does not match.`},
+      })
     }
   })
-  .catch(err => {
-    console.log('Err:', err);
+  .catch(error => {
+    return next({
+      log: `userController.verifyUser: Failed to log in. ${error}`,
+      status: 400,
+      message: { err: `userController.verifyUser: Failed to log in. ${error}`},
+    })
   })
 };
 

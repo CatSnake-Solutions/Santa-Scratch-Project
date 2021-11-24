@@ -6,21 +6,39 @@ const Wishlist = () => {
     const [email, setEmail] = useState('');
     // const [message, setMessage] = useState('');
     const [parentEmail, setParentEmail] = useState('');
-    
+
+
+    // useEffect(() => {
+    //     console.log(process.env.Password);
+    // }, [])
+
+    // const sendEmail =  () => {
+    //      Email.send({
+    //         Host: "smtp.gmail.com",
+    //         Username: "santaprep2021@gmail.com",
+    //         Password: "Codesmith2021",
+    //         To: parentEmail,
+    //         From: "santaprep2021@gmail.com",
+    //         Subject: "2021 Wishlist",
+    //         Body: email,
+    //       }).then(
+    //           alert("mail sent successfully")
+    //       ).catch(err);
+    // }
 
     const sendEmail =  () => {
-         Email.send({
-            Host: "smtp.gmail.com",
-            Username: "santaprep2021@gmail.com",
-            Password: "Codesmith2021",
-            To: parentEmail,
-            From: "santaprep2021@gmail.com",
-            Subject: "2021 Wishlist",
-            Body: email,
-          }).then(
-              alert("mail sent successfully")
-          ).catch(err);
-    }
+        Email.send({
+           Host: process.env.Host,
+           Username: process.env.Username,
+           Password: process.env.Password,
+           To: parentEmail,
+           From: process.env.From,
+           Subject: process.env.Subject,
+           Body: email,
+         }).then(
+             alert("mail sent successfully")
+         ).catch(err);
+   }
 
     function fakeAlert() {
         alert('Draft Saved!')
