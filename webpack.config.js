@@ -6,7 +6,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
 
   // Path to your entry point. From this file Webpack will begin its work
-  entry: './src/App.jsx',
+  // entry: './src/App.jsx',
+  // entry: './src/index.html',
+  entry: './src/index.js',
 
   // Path and filename of your result bundle.
   // Webpack will bundle all JavaScript into this file
@@ -18,6 +20,7 @@ module.exports = {
     publicPath: '',
     filename: 'bundle.js'
   },
+  plugins: [new HtmlWebpackPlugin({ template: './src/index.html' })],
   mode: 'development',
   devServer: {
     static: {
@@ -79,9 +82,8 @@ module.exports = {
       }  
   ],
 }, 
-  resolve: {
-    extensions: ['.ts', '.jsx', '.js', '.svg', '.png']
-  },
-  
-  plugins: [new HtmlWebpackPlugin({ template: './src/index.html' })],
+  // resolve: {
+  //   extensions: ['.ts', '.jsx', '.js', '.svg', '.png']
+  // },
+
 };
