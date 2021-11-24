@@ -1,6 +1,7 @@
 // Webpack uses this to work with directories
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const DotEnvWebpackPlugin = require('dotenv-webpack')
 // This is the main configuration object.
 // Here, you write different options and tell Webpack what to do
 module.exports = {
@@ -20,7 +21,17 @@ module.exports = {
     publicPath: '',
     filename: 'bundle.js'
   },
-  plugins: [new HtmlWebpackPlugin({ template: './src/index.html' })],
+
+  //     new DotenvWebpackPlugin({ systemvars: true }),
+
+    // new webpack.DefinePlugin({
+    //   'process.env': JSON.stringify(dotenv.config().parsed)
+    // }),
+
+  plugins: [
+    new HtmlWebpackPlugin({ template: './src/index.html' }), 
+    new DotEnvWebpackPlugin({ systemvars: true }),
+  ],
   mode: 'development',
   devServer: {
     static: {

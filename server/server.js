@@ -1,4 +1,5 @@
 const express = require('express');
+require('dotenv').config();
 const mongoose = require('mongoose');
 const app = express()
 const cookieParser = require('cookie-parser');
@@ -25,25 +26,35 @@ app.use(cookieParser());
 
 // Test route
 app.post('/SignUp', userController.createUser, (req, res) => {
-  res.send('Sign Up Route Reached on backend')
+  res
+    .status(200)
+    .set('Content-Type', 'text/plain; charset=utf-8')
+    .send('Sign Up Route Reached on backend')
 });
 
 app.post('/Login', userController.verifyUser, (req, res) => {
-  // res.redirect('/Dashboard')
-  res.send('Login Route reached on backend')
+  res
+    .status(200)
+    .set('Content-Type', 'text/plain; charset=utf-8')
+    .send('Login Route Reached on backend')
+});   
+
+// Global error handling middleware
+app.use((err, req, res, next) => {
+  const defaultErr = {
+    log: 'Express error handler caught unknown middleware error',
+    status: 400,
+    message: { err: 'An error occurred' },
+  };
+  const errorObj = Object.assign({}, defaultErr, err);
+  console.log(errorObj.log);
+  return res.status(errorObj.status).json(errorObj.message);
 });
 
-      // if (!res.locals.user) return res.send(`Username does not exist`);
-      // if (res.locals.user.password !== req.body.password)
-      //   return res.send(`Password is incorrect`);
-      //   //need to redirect to homepage
-      // if (res.locals.user.password === req.body.password) 
-      
-      
+// Catch all other API requests      
 app.use('*', (req, res) => {
   res.status(404).send('Not Found');
 });
-
 
 app.listen(PORT, () => console.log(`Listening on PORT: ${PORT}`));
 
