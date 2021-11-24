@@ -10,6 +10,7 @@ const CookieRecipes = () => {
    const [cards, setCards] = useState([]);
 
    useEffect(() => {
+      console.log('useeffect')
        const fetchData = () => {
         fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?query=${query}&number=10&offset=0&type=cookie`, {
 	            "method": "GET",
