@@ -7,6 +7,7 @@ const UserController = {}
   UserController.createUser = (req, res, next) => {
     console.log('Create User middleware reached');
     const { name, email, username, password } = req.body;
+    
     User.create({ name, email, username, password })
       .then(newUser => {
         res.locals.user_id = newUser.id;

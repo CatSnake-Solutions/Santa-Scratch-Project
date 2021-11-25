@@ -10,11 +10,13 @@ const cookieController = require('./controller/cookieController');
 
 const PORT = 3000;
 // mongoose.connect('mongodb+srv://scratch:britpeytonrossnickFTRI5@scratchproject.rqthe.mongodb.net/scratchproject?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false});
-mongoose.connect('mongodb+srv://admin:Videsh123@cluster0.91nl5.mongodb.net/CATSNAKE?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false});
 
-mongoose.connection.once('open', () => {
-  console.log('Connected to Database');
-});
+
+// mongoose.connect('mongodb+srv://admin:Videsh123@cluster0.91nl5.mongodb.net/CATSNAKE?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false});
+
+// mongoose.connection.once('open', () => {
+//   console.log('Connected to Database');
+// });
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
