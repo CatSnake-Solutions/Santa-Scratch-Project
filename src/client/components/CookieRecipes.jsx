@@ -2,11 +2,12 @@ import React from "react";
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import RecipeCard from "./RecipeCard.jsx";
+import RecipeContainer from './RecipeContainer.jsx';
 
 const CookieRecipes = () => {
 	// const [search, setSearch] = useState("");
 	// const [query, setQuery] = useState("");
-	// const [data, setData] = useState([""]);
+	const [data, setData] = useState(null);
 	const [cards, setCards] = useState([]);
 	// const [recipes, setRecipes] = useState([]);
 	const [id, setId] = useState(null);
@@ -33,30 +34,31 @@ const CookieRecipes = () => {
 		// }
 
 		fetch(
-			"https://api.spoonacular.com/recipes/complexSearch?apiKey=6a326e977bb2441c99f21d04ccb07b7c&query=cookie"
+			"https://api.spoonacular.com/recipes/complexSearch?apiKey=7d80fcc2a0d24ff985a746f84b1c5c14&query=cookie"
 		)
 			// fetch('https://api.spoonacular.com/recipes/1449043/analyzedInstructions?apiKey=6a326e977bb2441c99f21d04ccb07b7c')
 			.then((data) => data.json())
 			.then((data) => {
-				setId(data.results[i].id);
-				setTitle(data.results[i].title);
-				setImg(data.results[i].image);
-				const cardHolder = [];
-				for (let i = 0; i < data.results.length; i++) {
-					cardHolder.push(
-						<div>
-							<RecipeCard id={id} title={cookieTitle} image={img} />
-						</div>
-					);
-				}
-				console.log(cardHolder);
+				// data === data.results
+				setData(data)
 			})
 			.catch((err) => console.log(`Err: ${err}`));
 	}
-
-	function viewState() {
-		console.log(recipes);
-	}
+	
+	// console.log(data.results)
+	// const result = [];
+	//data.map((ele) => ele)
+// const ardHolder = [];
+// 				for (let i = 0; i < data.results.length; i++) {
+// 					cardHolder.push(
+// 						<div>
+// 							<RecipeCard id={id} title={cookieTitle} image={img} />
+// 						</div>
+// 					);
+// 				}
+// 	function viewState() {
+// 		console.log(recipes);
+// 	}
 
 	//    useEffect(() => {
 	//        const fetchData = () => {
@@ -113,11 +115,19 @@ const CookieRecipes = () => {
 
 	//     }, [data])
 
+	// ********************************* NEW CODE ******************************* 
+	// 
+	// data && data.results ? data.results[0].id : null;
+
+
+
 	return (
 		<>
 			<button onClick={(e) => dispatchFetch()}>Call fetch request</button>
 			<button onClick={(e) => viewState()}>View State</button>
 			{/* { recipes[0] ? recipes.steps[0].step : null } */}
+			
+			{ data && <RecipeContainer recipesArray={data} /> }
 		</>
 		// <div className="Container">
 		//   <nav>
