@@ -14,27 +14,26 @@ const CookieRecipes = () => {
 	const [cookieTitle, setCookieTitle] = useState(null);
 	const [img, setImg] = useState(null);
 
-	// Dispatch fetch call
+	// Dispatch fetch call to get cookie recipes
+	// useEffect((
+		
+	// 	function dispatchFetch() {
+	// 		fetch(
+	// 			"https://api.spoonacular.com/recipes/complexSearch?apiKey=7d80fcc2a0d24ff985a746f84b1c5c14&query=cookie"
+	// 		)
+	// 			// fetch('https://api.spoonacular.com/recipes/1449043/analyzedInstructions?apiKey=6a326e977bb2441c99f21d04ccb07b7c')
+	// 			.then((data) => data.json())
+	// 			.then((data) => {
+	// 				// data === data.results
+	// 				setData(data)
+	// 			})
+	// 			.catch((err) => console.log(`Err: ${err}`));
+	// 	}
+		
+	// ))
 	function dispatchFetch() {
-		//     fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?query=${query}&number=10&offset=0&type=cookie`, {
-		//       "method": "GET",
-		//      "headers": {
-		// "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
-		// //"x-rapidapi-key": "3827341071msh9cabc19f9c4a50ap194b6fjsnb03240d1f478",
-		// "x-rapidapi-key": '6a326e977bb2441c99f21d04ccb07b7c'
-		// }
-		// }
-		// const optionsObject = {
-		//   method: "GET",
-		//   mode: "cors",
-		//   headers: {
-		//     "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
-		//     "x-rapidapi-key": "6a326e977bb2441c99f21d04ccb07b7c"
-		//   }
-		// }
-
 		fetch(
-			"https://api.spoonacular.com/recipes/complexSearch?apiKey=7d80fcc2a0d24ff985a746f84b1c5c14&query=cookie"
+			"https://api.spoonacular.com/recipes/complexSearch?apiKey=c3438c093ba3428dbb48800c1f2d8c23&query=cookie"
 		)
 			// fetch('https://api.spoonacular.com/recipes/1449043/analyzedInstructions?apiKey=6a326e977bb2441c99f21d04ccb07b7c')
 			.then((data) => data.json())
@@ -126,31 +125,10 @@ const CookieRecipes = () => {
 			<button onClick={(e) => dispatchFetch()}>Call fetch request</button>
 			<button onClick={(e) => viewState()}>View State</button>
 			{/* { recipes[0] ? recipes.steps[0].step : null } */}
-			
+		
 			{ data && <RecipeContainer recipesArray={data} /> }
 		</>
-		// <div className="Container">
-		//   <nav>
-		//   <h3 className="SantaStyle1">Cookie Recipes</h3>
-		// <form >
-		//     <label className="SantaStyle2">Search Cookies:</label>
-		//     <input value={search} onChange={ e => {
-		//         setSearch(e.target.value);
-		//       }} className='submitInput'></input>
-		//     <input type="submit" value="Search" className='submit'></input>
-		// </form>
-		//   </nav>
-		//   <div className="cardContainer">
-		//     {cards}
-		//   </div>
-		//    <div className="btn btnbottom">
-		//    <Link to="/Dashboard">
-		//   <button type="submit" >
-		//       Go Back
-		//   </button>
-		//   </Link>
-		//   </div>
-		// </div>
+	
 	);
 };
 
