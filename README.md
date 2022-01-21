@@ -4,17 +4,17 @@ in a .env file located in the project root.
 This file, with these fields, will be required to correctly render the Wishlist component
 of the React application.
 
-# Password to email listed in username field
+Password to email listed in username field
 Password=""
 
-# Smtp connection host
+Smtp connection host
 Host=""
 
-# Email to use as "Santa's email"
+Email to use as "Santa's email"
 Username=""
 
-# Same Email as username field
+Same Email as username field
 From=""
 
-# Email subject
+Email subject
 Subject=""
